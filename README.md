@@ -1,4 +1,4 @@
-# skype_chat_admin
+# Skype chat admin
  
 ![image](https://user-images.githubusercontent.com/1984061/138210075-50d565a9-1daa-4b5b-aa30-d84a0818c64b.png)
 
