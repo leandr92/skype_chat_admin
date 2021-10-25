@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>778</width>
-    <height>346</height>
+    <height>413</height>
    </rect>
   </property>
   <property name="palette">
@@ -445,7 +445,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>220</y>
+      <y>280</y>
       <width>126</width>
       <height>51</height>
      </rect>
@@ -463,7 +463,7 @@
       <x>20</x>
       <y>30</y>
       <width>241</width>
-      <height>251</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -671,7 +671,7 @@ border: 0px</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>145</y>
+      <y>205</y>
       <width>491</width>
       <height>161</height>
      </rect>
@@ -694,7 +694,7 @@ border: 0px</string>
      <string notr="true">color: rgb(85, 0, 0);</string>
     </property>
     <property name="title">
-     <string>3. Создание чата и копирование пользователей</string>
+     <string>4. Создание чата и копирование пользователей</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -825,7 +825,7 @@ border: 0px</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>280</y>
+      <y>340</y>
       <width>241</width>
       <height>23</height>
      </rect>
@@ -845,6 +845,54 @@ color: rgb(85, 0, 0);</string>
      <string>Загрузить еще</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>140</y>
+      <width>491</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 0, 0);</string>
+    </property>
+    <property name="title">
+     <string>3. Изменение чата</string>
+    </property>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.494, fy:0.505364, stop:0.403409 rgba(255, 255, 255, 255), stop:0.948864 rgba(242, 242, 242, 255));
+border-color: rgb(190, 190, 190);</string>
+     </property>
+     <property name="text">
+      <string>Сделать модерируемым</string>
+     </property>
+    </widget>
+   </widget>
    <zorder>groupBox</zorder>
    <zorder>groupBox_3</zorder>
    <zorder>label_3</zorder>
@@ -852,6 +900,7 @@ color: rgb(85, 0, 0);</string>
    <zorder>label</zorder>
    <zorder>label_6</zorder>
    <zorder>loadMore</zorder>
+   <zorder>groupBox_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -35,12 +35,24 @@ class mywindow(QtWidgets.QMainWindow):
         self.createChatThread = CreateChatThread()
         self.createChatThread.skype = self.skype
         self.createChatThread.endSignal.connect(self.set_create_label)
+
+        # подключение потока для создания чата
+        self.createChatChangeThread = CreateChatChangeThread()
+        self.createChatChangeThread.skype = self.skype
+        self.createChatChangeThread.endSignal.connect(self.set_change_label)
         
         # подключение потока для загрузки списка чатов
         self.loadConversitonsThread = LoadConversitonsThread()
         self.loadConversitonsThread.skype = self.skype
         self.loadConversitonsThread.endSignal.connect(self.btnClicked)
    
+    def set_change_label(self, changed):
+        if changed:
+            self.ui.label_7.setText("Модерирование включено")
+            self.loadConversitonsThread.start()
+        else:
+            self.ui.label_7.setText("Ошибка подключения") 
+
     def set_auth_label(self, connected):
         if connected:
             self.ui.label_7.setText("Подключено")
@@ -141,6 +153,22 @@ class CreateChatThread(QThread):
     def run(self):
 
         result = self.skype.moveChat(self.admins, self.chatId, self.newChatName)
+
+        self.endSignal.emit(result)   
+
+# отдельный поток для работы с изменением чата
+class CreateChatChangeThread(QThread):
+    
+    endSignal = pyqtSignal(bool)
+    skype = SkypeManager.Skype
+    chatId = ""
+
+    def __init__(self):
+        super().__init__()
+ 
+    def run(self):
+
+        result = self.skype.setIsModerateThread(self.chatId)
 
         self.endSignal.emit(result)   
 

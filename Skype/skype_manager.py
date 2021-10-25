@@ -64,7 +64,7 @@ class SkypeManager():
         return groupChats
 
 
-    def moveChat(self, admins, chatId, newChatName):
+    def moveChat(self, admins, chatId, newChatName, moderate=False):
 
         chat = self._sk.chats[chatId]
         members = chat.userIds
@@ -74,8 +74,26 @@ class SkypeManager():
             newChat = self._sk.chats.create(members, admins)
 
             newChat.setTopic(newChatName)
+            newChat.setIsModerateThread(self, moderate)
 
             result = True
+        except:
+            pass
+
+        return result
+
+    # Сделать группу модерируемой 
+    def setIsModerateThread(self, chatId, moderate=True):
+        
+        chat = self._sk.chats[chatId]
+        result = False
+
+        try:
+            chat = self._sk.chats[chatId]
+            chat.setIsModerateThread(moderate)
+
+            result = True
+
         except:
             pass
 
@@ -87,7 +105,6 @@ class SkypeManager():
 # password = ""
 
 # lSkype.connect(user, password)
-# lSkype.conversationsList()
-# lSkype.conversationsList()
-
+# chats = lSkype.conversationsList()
+# chats = lSkype.conversationsList()
 # moveChat(user, ["админ"], IDЧата, ИмяЧата)
