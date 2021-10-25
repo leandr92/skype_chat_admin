@@ -868,7 +868,7 @@ color: rgb(85, 0, 0);</string>
     <property name="title">
      <string>3. Изменение чата</string>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="setChatModerate">
      <property name="geometry">
       <rect>
        <x>10</x>

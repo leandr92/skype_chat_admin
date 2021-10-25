@@ -25,6 +25,7 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.auth.clicked.connect(self.auth)
         self.ui.createChat.clicked.connect(self.createChat)
         self.ui.loadMore.clicked.connect(self.loadMore)
+        self.ui.setChatModerate.clicked.connect(self.loadMore)
 
         # подключение потока для аутентификации
         self.authThread = AuthThread()
@@ -92,6 +93,9 @@ class mywindow(QtWidgets.QMainWindow):
 
     def loadMore(self):
         self.loadConversitonsThread.start()
+
+    def setChatModerate(self):
+        self.createChatChangeThread.start()
 
     def btnClicked(self, data):
 
