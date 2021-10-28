@@ -1,5 +1,6 @@
+*.tokens-app
 *.spec
 __pycache__/
 build/
 dist/
-
+mingaliev.e.tokens-app
