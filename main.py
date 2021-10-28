@@ -25,7 +25,7 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.auth.clicked.connect(self.auth)
         self.ui.createChat.clicked.connect(self.createChat)
         self.ui.loadMore.clicked.connect(self.loadMore)
-        self.ui.setChatModerate.clicked.connect(self.loadMore)
+        self.ui.setChatModerate.clicked.connect(self.setChatModerate)
 
         # подключение потока для аутентификации
         self.authThread = AuthThread()
