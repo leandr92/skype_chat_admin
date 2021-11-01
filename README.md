@@ -1,6 +1,6 @@
 # Skype chat admin
  
-![image](![image](https://user-images.githubusercontent.com/1984061/139675615-30bfcde4-3f29-4e05-b599-152f8a1a9884.png))
+![image](https://user-images.githubusercontent.com/1984061/139675661-d880a635-078c-44cc-b0c7-380a2d6a66c2.png)
 
  Прототип GUI (PyQt5) приложения для управления чатами в скайпе. Сейчас работает авторизация, даже двухфакторная, загрузка списка последних чатов, и копирование группового чата
 
