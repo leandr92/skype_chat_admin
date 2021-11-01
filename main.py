@@ -95,6 +95,11 @@ class mywindow(QtWidgets.QMainWindow):
         self.loadConversitonsThread.start()
 
     def setChatModerate(self):
+        
+        if self.ui.chats.currentRow() >= 0:
+
+            self.createChatChangeThread.chatId = self.ui.chats.item(self.ui.chats.currentRow(), 1).text()
+
         self.createChatChangeThread.start()
 
     def btnClicked(self, data):

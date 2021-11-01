@@ -60,7 +60,6 @@ class SkypeManager():
             for item in chats: 
                 if isinstance(chats[item], skpy.SkypeGroupChat):
                     groupChats.append((chats[item].topic, chats[item].id))
-        print(groupChats)
         return groupChats
 
 
@@ -84,8 +83,7 @@ class SkypeManager():
 
     # Сделать группу модерируемой 
     def setIsModerateThread(self, chatId, moderate=True):
-        
-        chat = self._sk.chats[chatId]
+
         result = False
 
         try:
@@ -93,18 +91,9 @@ class SkypeManager():
             chat.setIsModerateThread(moderate)
 
             result = True
+            # print("id: " + chatId + " name: " + chat.Topic)
 
         except:
             pass
 
         return result
-
-# lSkype = SkypeManager()
-
-# user = ""
-# password = ""
-
-# lSkype.connect(user, password)
-# chats = lSkype.conversationsList()
-# chats = lSkype.conversationsList()
-# moveChat(user, ["админ"], IDЧата, ИмяЧата)
