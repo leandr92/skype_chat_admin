@@ -5,3 +5,12 @@ build/
 dist/
 mingaliev.e.tokens-app
 manual_test.py
+ManageSkypeFromFile.py
+.vscode/
+chatDeletionAdmins.csv
+chat.txt
+admins.txt
+removeAdminsFromChat.py
+removeUsersFromChat.py
+connectionStrings.py
+chatDeletion*.csv
