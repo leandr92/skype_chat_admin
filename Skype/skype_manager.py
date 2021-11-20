@@ -4,35 +4,30 @@ from skpy import SkypeAuthException
 from skpy import SkypeApiException
 import skpy
 
-class SkypeManager():
+class SkypeManager(Skype):
 
-    user = ""
-    _sk = Skype()
-    chats = _sk.chats
+    _user = ""
     _tokenFile = ""
 
-    def __init__(self):
-        super(SkypeManager, self).__init__()
+    def connect(self, _user, password):
 
-    def connect(self, user, password):
-
-        self.user = user
-        self._tokenFile = self.user + ".tokens-app";
-        self._sk.conn.setTokenFile(self._tokenFile)
+        self._user = _user
+        self._tokenFile = self._user + ".tokens-app";
+        self.conn.setTokenFile(self._tokenFile)
 
         try:
-            self._sk.conn.readToken()
+            self.conn.readToken()
         except SkypeAuthException:
             print("пытаюсь подключиться")
-            if not self._sk.conn.connected: 
+            if not self.conn.connected: 
                 
-                self._sk.conn.setUserPwd(self.user, password)
+                self.conn.setUserPwd(self._user, password)
                 tryCount = 10
                 i = 0
-                while not self._sk.conn.connected and i < tryCount:
+                while not self.conn.connected and i < tryCount:
                     
                     try:
-                        self._sk.conn.getSkypeToken()
+                        self.conn.getSkypeToken()
                     except:     
                         time.sleep(10)
                         pass
@@ -40,7 +35,7 @@ class SkypeManager():
                         i += 1 
 
         try:
-            self._sk.conn
+            self.conn
             print("подключено")
         except SkypeAuthException as authEx:
             skype_auth_error = authEx.args[0]
@@ -48,7 +43,7 @@ class SkypeManager():
 
     def checkAuth(self):
         
-        return self._sk.conn.connected
+        return self.conn.connected
 
     def conversationsList(self):
 
@@ -65,12 +60,12 @@ class SkypeManager():
 
     def moveChat(self, admins, chatId, newChatName, moderate=False):
 
-        chat = self._sk.chats[chatId]
+        chat = self.chats[chatId]
         members = chat.userIds
         result = False
 
         try:
-            newChat = self._sk.chats.create(members, admins)
+            newChat = self.chats.create(members, admins)
 
             newChat.setTopic(newChatName)
             newChat.setIsModerateThread(self, moderate)
@@ -87,13 +82,68 @@ class SkypeManager():
         result = False
 
         try:
-            chat = self._sk.chats[chatId]
-            chat.setIsModerateThread(moderate)
+            chat = self.chats[chatId]
+            chat.setModerated(moderate)
 
             result = True
-            # print("id: " + chatId + " name: " + chat.Topic)
+            print("Модерирование установлено в " + moderate + " для чата id: " + chatId + " name: " + chat.Topic)
 
         except:
             pass
 
         return result
+    
+    def setUserRole(self, chatId, userId, admin=False, silentMode = False):
+        chat = self.chats[chatId]
+        
+        if  userId in chat.userIds:
+        
+            chat.addMember(userId, admin)
+            role = "user"
+            
+            if admin:
+                role = "admin"
+            
+            print("Пользователь " + userId + " изменил роль в чате : " + chat.topic + " " + chat.id + " на " + role)
+            
+            if silentMode:
+                msgs = chat.getMsgs()
+
+                for message in msgs:
+                    if isinstance(message, 
+                                (skpy.msg.SkypeChangeMemberMsg, 
+                                skpy.msg.SkypeRemoveMemberMsg, skpy.msg.SkypeAddMemberMsg)) and not message.deleted:
+                        
+                        message.delete()
+                        print("Сообщение удалено")
+                        break
+            
+        else: 
+            print("Пользователь " + userId + " не состоит в чате ")
+            
+    def deleteUser(self, chatId, userId, silentMode = False):
+       
+        chat = self.chats[chatId]
+        
+        if  userId in chat.userIds:
+        
+            chat.removeMember(userId)
+            
+            print("Пользователь " + userId + " удален из чата " + chat.topic)
+            
+            if silentMode:
+                msgs = chat.getMsgs()
+
+                for message in msgs:
+                    if isinstance(message, 
+                                (skpy.msg.SkypeChangeMemberMsg, 
+                                skpy.msg.SkypeRemoveMemberMsg, skpy.msg.SkypeAddMemberMsg)) and not message.deleted:
+                        
+                        message.delete()
+                        print("Сообщение удалено")
+                        break
+        else: 
+            print("Пользователь " + userId + " не состоит в чате ")
+
+        
+        
