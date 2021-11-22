@@ -9,3 +9,12 @@ chats.txt
 users.txt
 adminAddFromFile.py
 adminCheck.py
+ManageSkypeFromFile.py
+.vscode/
+chatDeletionAdmins.csv
+chat.txt
+admins.txt
+removeAdminsFromChat.py
+removeUsersFromChat.py
+connectionStrings.py
+chatDeletion*.csv

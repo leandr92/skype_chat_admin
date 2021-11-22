@@ -1,12 +1,11 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QThread, pyqtSignal
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItems
 import Skype.skype_manager as SkypeManager
 
 # Импортируем нашу форму.
 from UI.Ui_untitled import Ui_MainWindow
 import sys
- 
  
 class mywindow(QtWidgets.QMainWindow):
     def __init__(self):
