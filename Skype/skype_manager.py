@@ -97,3 +97,26 @@ class SkypeManager():
             pass
 
         return result
+    def setUserRoleInChat(self, userId, chatId, admin = False):
+
+        result = False
+
+        try:
+            chat = self._sk.chats[chatId]
+            chat.addMember(userId, admin)
+        except:
+            pass
+
+        return result
+
+    def removeUserFromChat(self, userId, chatId):
+
+        result = False
+
+        try:
+            chat = self._sk.chats[chatId]
+            chat.removeMember(userId)
+        except:
+            pass
+        
+        return result

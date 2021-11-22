@@ -5,3 +5,7 @@ build/
 dist/
 mingaliev.e.tokens-app
 manual_test.py
+chats.txt
+users.txt
+adminAddFromFile.py
+adminCheck.py
